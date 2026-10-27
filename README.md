@@ -186,3 +186,7 @@ erDiagram
         bigint livro_id FK
     }
 ```
+## Como executar
+1. Java 17+ e Maven (ou uma IDE com suporte a Maven)
+2. Execute a classe `BibliotecaApplication`
+3. Acesse http://localhost:8080
