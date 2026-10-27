@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Livros')}"></head>
+<body>
+<nav th:replace="~{fragments/layout :: menu}"></nav>
+<main>
+    <div th:replace="~{fragments/layout :: mensagens}"></div>
+    <div class="topo">
+        <h1>Livros</h1>
+        <a class="btn" th:href="@{/livros/novo}">+ Novo Livro</a>
+    </div>
+    <form th:action="@{/livros}" method="get" class="topo">
+        <input type="text" name="busca" th:value="${busca}" placeholder="Buscar por título...">
+        <button class="btn" type="submit">Buscar</button>
+    </form>
+    <table>
+        <thead><tr><th>ID</th><th>Título</th><th>Categoria</th><th>Autores</th><th>Ano</th><th>Disp.</th><th>Ações</th></tr></thead>
+        <tbody>
+        <tr th:each="l : ${livros}">
+            <td th:text="${l.id}"></td>
+            <td th:text="${l.titulo}"></td>
+            <td th:text="${l.categoria != null} ? ${l.categoria.nome} : '-'"></td>
+            <td th:text="${#strings.listJoin(l.autores.![nome], ', ')}"></td>
+            <td th:text="${l.anoPublicacao}"></td>
+            <td th:text="${l.quantidadeDisponivel}"></td>
+            <td>
+                <a class="btn peq" th:href="@{/livros/{id}/editar(id=${l.id})}">Editar</a>
+                <form class="inline" th:action="@{/livros/{id}/excluir(id=${l.id})}" method="post"
+                      onsubmit="return confirm('Excluir este livro?')">
+                    <button class="btn peq perigo" type="submit">Excluir</button>
+                </form>
+            </td>
+        </tr>
+        <tr th:if="${#lists.isEmpty(livros)}"><td colspan="7" class="vazio">Nenhum livro encontrado.</td></tr>
+        </tbody>
+    </table>
+</main>
+</body>
+</html>

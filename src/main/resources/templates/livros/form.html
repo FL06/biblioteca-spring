@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Livro')}"></head>
+<body>
+<nav th:replace="~{fragments/layout :: menu}"></nav>
+<main>
+    <h1 th:text="${livro.id == null} ? 'Cadastrar Livro' : 'Editar Livro'"></h1>
+    <div class="card">
+        <form th:action="@{/livros/salvar}" th:object="${livro}" method="post">
+            <input type="hidden" th:field="*{id}">
+            <label>Título</label>
+            <input type="text" th:field="*{titulo}" required>
+            <label>ISBN</label>
+            <input type="text" th:field="*{isbn}" required>
+            <label>Ano de publicação</label>
+            <input type="number" th:field="*{anoPublicacao}">
+            <label>Quantidade disponível</label>
+            <input type="number" th:field="*{quantidadeDisponivel}" min="0" required>
+            <label>Categoria</label>
+            <select name="categoriaId" required>
+                <option value="">Selecione</option>
+                <option th:each="c : ${categorias}" th:value="${c.id}" th:text="${c.nome}"
+                        th:selected="${livro.categoria != null and livro.categoria.id == c.id}"></option>
+            </select>
+            <label>Autores</label>
+            <div class="checks">
+                <label th:each="a : ${autores}">
+                    <input type="checkbox" name="autoresIds" th:value="${a.id}"
+                           th:checked="${#lists.contains(autoresSelecionados, a.id)}">
+                    <span th:text="${a.nome}"></span>
+                </label>
+                <span th:if="${#lists.isEmpty(autores)}">Cadastre autores antes de criar livros.</span>
+            </div>
+            <div class="acoes">
+                <button class="btn ok" type="submit">Salvar</button>
+                <a class="btn sec" th:href="@{/livros}">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</main>
+</body>
+</html>

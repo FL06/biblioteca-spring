@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Empréstimos')}"></head>
+<body>
+<nav th:replace="~{fragments/layout :: menu}"></nav>
+<main>
+    <div th:replace="~{fragments/layout :: mensagens}"></div>
+    <div class="topo">
+        <h1>Empréstimos</h1>
+        <a class="btn" th:href="@{/emprestimos/novo}">+ Novo Empréstimo</a>
+    </div>
+    <table>
+        <thead><tr><th>ID</th><th>Leitor</th><th>Livros</th><th>Empréstimo</th><th>Previsão</th><th>Devolução</th><th>Status</th><th>Ações</th></tr></thead>
+        <tbody>
+        <tr th:each="e : ${emprestimos}">
+            <td th:text="${e.id}"></td>
+            <td th:text="${e.leitor.nome}"></td>
+            <td><div th:each="i : ${e.itens}" th:text="${i.livro.titulo}"></div></td>
+            <td th:text="${#temporals.format(e.dataEmprestimo, 'dd/MM/yyyy')}"></td>
+            <td th:text="${#temporals.format(e.dataPrevistaDevolucao, 'dd/MM/yyyy')}"></td>
+            <td th:text="${#temporals.format(e.dataDevolucao, 'dd/MM/yyyy')}"></td>
+            <td><span th:class="'badge ' + ${e.status.name()}" th:text="${e.status}"></span></td>
+            <td>
+                <form class="inline" th:if="${e.status.name() != 'DEVOLVIDO'}"
+                      th:action="@{/emprestimos/{id}/devolver(id=${e.id})}" method="post">
+                    <button class="btn peq ok" type="submit">Devolver</button>
+                </form>
+                <form class="inline" th:action="@{/emprestimos/{id}/excluir(id=${e.id})}" method="post"
+                      onsubmit="return confirm('Excluir este empréstimo?')">
+                    <button class="btn peq perigo" type="submit">Excluir</button>
+                </form>
+            </td>
+        </tr>
+        <tr th:if="${#lists.isEmpty(emprestimos)}"><td colspan="8" class="vazio">Nenhum empréstimo registrado.</td></tr>
+        </tbody>
+    </table>
+</main>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Início')}"></head>
+<body>
+<nav th:replace="~{fragments/layout :: menu}"></nav>
+<main>
+    <h1>Bem-vindo!</h1>
+    <p>Sistema de gerenciamento de acervo, leitores e empréstimos.</p>
+    <div class="cards">
+        <div class="card"><div class="num" th:text="${totalLivros}">0</div>Livros</div>
+        <div class="card"><div class="num" th:text="${totalLeitores}">0</div>Leitores</div>
+        <div class="card"><div class="num" th:text="${totalAtivos}">0</div>Empréstimos em aberto</div>
+    </div>
+</main>
+</body>
+</html>

@@ -1,0 +1,36 @@
+* { box-sizing: border-box; }
+body { font-family: Arial, Helvetica, sans-serif; margin: 0; background: #f4f6f8; color: #222; }
+nav { background: #1f3a5f; padding: 0 24px; display: flex; align-items: center; gap: 4px; flex-wrap: wrap; }
+nav .brand { color: #fff; font-weight: bold; font-size: 18px; margin-right: 24px; padding: 14px 0; text-decoration: none; }
+nav a.item { color: #dbe6f5; text-decoration: none; padding: 16px 14px; }
+nav a.item:hover { background: #2d5086; color: #fff; }
+main { max-width: 1000px; margin: 28px auto; padding: 0 16px; }
+h1 { margin-top: 0; }
+.topo { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; gap: 12px; flex-wrap: wrap; }
+.card { background: #fff; border-radius: 8px; padding: 20px; box-shadow: 0 1px 4px rgba(0,0,0,.1); }
+table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,.1); }
+th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid #e5e9ee; vertical-align: top; }
+th { background: #e9eef5; }
+.btn { display: inline-block; padding: 8px 14px; border: none; border-radius: 5px; background: #1f3a5f; color: #fff; text-decoration: none; cursor: pointer; font-size: 14px; }
+.btn:hover { background: #2d5086; }
+.btn.sec { background: #7a8794; }
+.btn.perigo { background: #c0392b; }
+.btn.ok { background: #2e8b57; }
+.btn.peq { padding: 5px 10px; font-size: 13px; }
+form.inline { display: inline; }
+label { display: block; margin: 12px 0 4px; font-weight: bold; }
+input[type=text], input[type=email], input[type=number], input[type=date], select {
+  width: 100%; padding: 8px; border: 1px solid #bcc5cf; border-radius: 5px; font-size: 14px; }
+.checks label { display: inline-block; font-weight: normal; margin: 6px 14px 0 0; }
+.acoes { margin-top: 20px; display: flex; gap: 8px; }
+.msg { padding: 12px 16px; border-radius: 6px; margin-bottom: 16px; }
+.msg.sucesso { background: #d9f2e3; color: #1d6b40; }
+.msg.erro { background: #f8d9d6; color: #922b21; }
+.cards { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 20px; }
+.cards .card { flex: 1; min-width: 180px; text-align: center; }
+.cards .num { font-size: 36px; font-weight: bold; color: #1f3a5f; }
+.badge { padding: 3px 8px; border-radius: 10px; font-size: 12px; color: #fff; }
+.badge.ATIVO { background: #2d6cdf; }
+.badge.DEVOLVIDO { background: #2e8b57; }
+.badge.ATRASADO { background: #c0392b; }
+.vazio { text-align: center; color: #777; padding: 20px; }

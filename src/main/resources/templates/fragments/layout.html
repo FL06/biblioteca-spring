@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head(titulo)">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title th:text="${titulo} + ' - Biblioteca'">Biblioteca</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<nav th:fragment="menu">
+    <a class="brand" th:href="@{/}">📚 Biblioteca Comunitária</a>
+    <a class="item" th:href="@{/livros}">Livros</a>
+    <a class="item" th:href="@{/autores}">Autores</a>
+    <a class="item" th:href="@{/categorias}">Categorias</a>
+    <a class="item" th:href="@{/leitores}">Leitores</a>
+    <a class="item" th:href="@{/emprestimos}">Empréstimos</a>
+</nav>
+<div th:fragment="mensagens">
+    <div class="msg sucesso" th:if="${sucesso}" th:text="${sucesso}"></div>
+    <div class="msg erro" th:if="${erro}" th:text="${erro}"></div>
+</div>
+</body>
+</html>

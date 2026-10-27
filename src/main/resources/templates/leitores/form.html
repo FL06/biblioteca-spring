@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Leitor')}"></head>
+<body>
+<nav th:replace="~{fragments/layout :: menu}"></nav>
+<main>
+    <h1 th:text="${leitor.id == null} ? 'Cadastrar Leitor' : 'Editar Leitor'"></h1>
+    <div class="card">
+        <form th:action="@{/leitores/salvar}" th:object="${leitor}" method="post">
+            <input type="hidden" th:field="*{id}">
+            <label>Nome</label>
+            <input type="text" th:field="*{nome}" required>
+            <label>E-mail</label>
+            <input type="email" th:field="*{email}" required>
+            <label>Telefone</label>
+            <input type="text" th:field="*{telefone}">
+            <label>CPF</label>
+            <input type="text" th:field="*{cpf}" required>
+            <div class="acoes">
+                <button class="btn ok" type="submit">Salvar</button>
+                <a class="btn sec" th:href="@{/leitores}">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</main>
+</body>
+</html>
